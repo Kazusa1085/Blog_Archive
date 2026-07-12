@@ -1,0 +1,74 @@
+name: Notify blog to rebuild
+
+# content 仓库有更新时，通知博客程序仓库重新构建部署。
+# 两种目标各自独立、按需配置，互不影响：
+#
+# 1. Fuwari_blog（GitHub Actions / GitHub Pages 部署）
+#    用 repository_dispatch 通知过去，Fuwari_blog 的 deploy.yml 需要监听
+#    `repository_dispatch: types: [content-updated]`（已经配置好）。
+#    需要在这个仓库（Blog_Archive）的 Settings -> Secrets and variables ->
+#    Actions 里添加一个 secret：
+#      DISPATCH_TOKEN：一个有权限访问 Fuwari_blog 仓库的 GitHub Personal
+#      Access Token（fine-grained token 只需要 Fuwari_blog 这一个仓库的
+#      Contents: Read and write 权限；或者用 classic token 的 repo 权限）。
+#
+# 2. 其他 Serverless 平台（Vercel / Netlify / Cloudflare Pages 等）
+#    这些平台通常都有自己的 "Deploy Hook" / "Build Hook" 功能：在对应平台的
+#    项目设置里创建一个专属 URL，POST 一下就能触发那个平台自己重新构建。
+#    在这个仓库加一个 secret：
+#      DEPLOY_HOOK_URLS：一个或多个 Hook 地址，多个用英文逗号分隔。
+#    没配置的话这一步会直接跳过，不会报错。
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Fuwari_blog rebuild via repository_dispatch
+        env:
+          DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$DISPATCH_TOKEN" ]; then
+            echo "未配置 DISPATCH_TOKEN，跳过 repository_dispatch。"
+            exit 0
+          fi
+
+          TARGET_REPO="Kazusa1085/Fuwari_blog"
+
+          echo "正在通知 $TARGET_REPO 重新构建..."
+          HTTP_CODE=$(curl -s -o /tmp/dispatch_response.json -w "%{http_code}" -L -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $DISPATCH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${TARGET_REPO}/dispatches" \
+            -d '{"event_type":"content-updated"}')
+
+          if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
+            echo "通知成功 (HTTP $HTTP_CODE)"
+          else
+            echo "通知失败 (HTTP $HTTP_CODE)："
+            cat /tmp/dispatch_response.json
+            exit 1
+          fi
+
+      - name: Trigger extra deploy hooks (Vercel / Netlify / Cloudflare Pages 等)
+        env:
+          DEPLOY_HOOK_URLS: ${{ secrets.DEPLOY_HOOK_URLS }}
+        run: |
+          if [ -z "$DEPLOY_HOOK_URLS" ]; then
+            echo "未配置 DEPLOY_HOOK_URLS，跳过。"
+            exit 0
+          fi
+
+          echo "$DEPLOY_HOOK_URLS" | tr ',' '\n' | while read -r url; do
+            url=$(echo "$url" | xargs)
+            if [ -n "$url" ]; then
+              echo "触发: $url"
+              HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$url")
+              echo "  -> HTTP $HTTP_CODE"
+            fi
+          done

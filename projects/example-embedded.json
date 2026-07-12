@@ -1,0 +1,13 @@
+{
+	"title": "示例项目：一个嵌入式小玩意",
+	"description": "第三条示例数据，演示新增的“嵌入式应用”分类（category 用 embedded）。删除本文件、换成你自己的嵌入式项目即可。",
+	"image": "",
+	"category": "embedded",
+	"techStack": ["C", "ESP32", "FreeRTOS"],
+	"status": "planned",
+	"sourceCode": "https://github.com/your-name/your-embedded-project",
+	"startDate": "2026-07-01",
+	"featured": false,
+	"tags": ["示例", "嵌入式"],
+	"showImage": false
+}
