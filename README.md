@@ -10,6 +10,8 @@ friends/     友链数据（独立 JSON，一个文件一条友链）
   _order.json  友链的显示顺序（文件名列表，不在此列表中的排在最后）
 projects/    项目展示数据（独立 JSON，一个文件一个项目）
   _order.json  项目的显示顺序，用法同上
+apps/        应用合集数据（独立 JSON，一个文件一个应用），对应 /apps 页面
+  _order.json  应用的显示顺序，用法同上
 ```
 
 ## 格式说明
@@ -17,5 +19,6 @@ projects/    项目展示数据（独立 JSON，一个文件一个项目）
 - `posts/*.md`：frontmatter 字段参考博客程序仓库里 `src/content.config.ts` 的 `postsCollection` schema（`title`、`published`、`tags`、`draft` 等）。
 - `friends/*.json`：字段为 `name`、`url`、`avatar`、`introduction`、`friendsPage`，文件名即该友链的 id。
 - `projects/*.json`：字段参考 `projectsCollection` schema（`title`、`description`、`category`、`techStack`、`status`、`sourceCode`、`visitUrl`、`featured` 等），文件名即该项目的 id。
+- `apps/*.json`：字段为 `name`、`url`、`image`（`public/` 路径或完整 URL）、`description`（可选）、`external`（可选，外链是否新标签打开），文件名即该应用的 id。
 
 新增/删除内容时记得同步更新对应的 `_order.json`。
