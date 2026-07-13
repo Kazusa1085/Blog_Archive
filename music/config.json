@@ -1,7 +1,7 @@
 {
 	"enable": true,
 	"mode": "meting",
-	"meting_api": "https://meting.mysqil.com/api?server=:server&type=:type&id=:id&auth=:auth&r=:r",
+	"meting_api": "https://met.raana.icu/?server=:server&type=:type&id=:id&auth=:auth&r=:r",
 	"server": "netease",
 	"type": "playlist",
 	"id": "14164869977"
