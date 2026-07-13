@@ -28,4 +28,3 @@ lang: zh_CN           # 指定语言 (可选)
 
 
 /*正在组织语言写自己的蒙对算法过程*/
-/*Auto Build Trigger Test*/
