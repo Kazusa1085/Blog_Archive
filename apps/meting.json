@@ -1,0 +1,7 @@
+{
+	"name": "Meting API",
+	"url": "https://met.raana.icu/",
+	"image": "/favicon/ffw.webp",
+	"description": "Meting API PHP 8.5",
+	"external": true
+}
