@@ -1,0 +1,15 @@
+{
+	"title": "Onedrive index Vercel",
+	"description": "基于 OneDrive 的网盘目录站，由 Vercel 和 Next.js 驱动，由 postman1year/onedrive-vercel-index @ 892c1de 修改而来",
+	"image": "",
+	"category": "web",
+	"techStack": ["TypeScript", "Tailwind CSS"],
+	"status": "completed",
+	"sourceCode": "hhttps://github.com/Kazusa1085/onedrive-vercel-index-enhanced",
+	"visitUrl": "https://dl.raana.icu/",
+	"startDate": "2026-08-10",
+	"endDate": "2026-08-13",
+	"featured": true,
+	"tags": ["示例", "Onedrive"],
+	"showImage": false
+}
