@@ -2,7 +2,7 @@
 title: 记一次EX5700的刷机过程
 published: 2025-07-28
 description: 合勤EX5700路由器的刷机教程
-tags: [OpenWRT , Router]
+tags: [OpenWRT, Router]
 category: Technique
 draft: false
 ---
@@ -64,7 +64,7 @@ draft: false
 
 连接模块和路由器，路由器的TTL排针位于路由器右下角，定义如图所示：
 
-![TTL Pin Desp](https://picx.raana.icu/IMG_20250728_040823.83acewnxvs.webp)
+![TTL Pin Desp](https://picx.raana.icu/IMG_20250728_040823.83acewnxvs.webp#vwid=1600&vhei=1112)
 
 :::caution[警告]
 **不要连接你的模块上的3V3和路由器上的3V3引脚！可能会烧毁您的模块或路由器！**
@@ -121,7 +121,7 @@ reset
 
 改DRAM量力而行，没有金刚钻别揽瓷器活，玩坏了自己挂🐟哈。
 
-![2GDDR4](https://picx.raana.icu/IMG_20250801_055149.4n80sn3taw.webp)
+![2GDDR4](https://picx.raana.icu/IMG_20250801_055149.4n80sn3taw.webp#vwid=1750&vhei=1307)
 
 /*2025.8.1 06:10 GMT+8 Update*/
 
