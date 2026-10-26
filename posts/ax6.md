@@ -88,7 +88,7 @@ http://192.168.31.1/cgi-bin/luci/;stok=<stok>/api/xqsystem/extendwifi_connect_in
 
 等待一会，当浏览器显示如图所示的 code 0 则表示 破解SSH成功， root密码查看5GHz频段WiFi密码即可得到。
 
-![图例](http://supes.top/wp-content/uploads/2022/05/6-scaled.jpg#vwid=2560&vhei=934)
+![图例](https://openwrt.ai/wp-content/uploads/2022/05/6-scaled.jpg#vwid=2560&vhei=934)
 
 **SSH解锁后不要重启！重启就白解锁了！**
 
@@ -162,7 +162,7 @@ mtd write /tmp/ax6-uboot.bin /dev/mtd7
 
 界面如图：
 
-![Uboot界面](http://supes.top/wp-content/uploads/2022/05/Snipaste_2022-05-15_18-13-48.png#vwid=1877&vhei=926)
+![Uboot界面](https://openwrt.ai/wp-content/uploads/2022/05/Snipaste_2022-05-15_18-13-48.png#vwid=1877&vhei=926)
 
 选择上面刷过一次的QSDK底包再次刷入即可。
 
